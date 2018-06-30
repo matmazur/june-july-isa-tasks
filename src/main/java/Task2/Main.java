@@ -9,22 +9,23 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         String str = "The quick brown fox jumps over the lazy dog";
+        String pangram2 = "You shall not pass!";
 
-        System.out.println(str.contains("[a-zA-Z]"));
+
+        System.out.println(check(str));
+
+        System.out.println(check(pangram2));
 
     }
 
-
-    public boolean check(String sentence) {
+    public static boolean check(String sentence) {
 
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
-        List<String> list = new ArrayList<String>(Arrays.asList(alphabet));
+        List<String> list = new ArrayList<String>(Arrays.asList(alphabet.split("")));
 
-
-        list.forEach(System.out::println);
-
-        return true;
+        return list
+                .stream()
+                .allMatch(p -> (sentence.toLowerCase()).contains(p));
     }
 }
