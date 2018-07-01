@@ -1,12 +1,10 @@
 package Task4;
 
-import java.util.Arrays;
-
 public class Main {
-
 
     public static void main(String[] args) {
 
+        //https://www.codewars.com/kata/robotic-tattoo-removal/train/java
 
         String[][] tat = new String[][]{
                 {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
@@ -25,10 +23,7 @@ public class Main {
                 {" ", " ", " ", " ", " ", "X", " ", " ", " ", " ", " "},
                 {" ", " ", " ", " ", " ", " ", " ", " ", " ", "P", " "},
                 {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "}};
-
-
     }
-
 
     public static String[][] robot(String[][] skinScan) {
 
