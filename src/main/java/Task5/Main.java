@@ -1,35 +1,44 @@
 package Task5;
 
-import java.util.function.Function;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
 
-        Function<Integer, Integer> f = sr -> sr * 2;
+        List<Student> students = new ArrayList<>();
+        students.add(new Student(23, 88, "David Goodman"));
+        students.add(new Student(25, 82, "Mark Rose"));
+        students.add(new Student(22, 90, "Jane Doe"));
+        students.add(new Student(25, 90, "Jane Dane"));
 
-        Node<Integer> mapa = new Node<>(1, new Node<>(2, new Node<>(3)));
 
+        System.out.println(sort(students));
 
     }
 
-    private static <T, R> Node<R> map(Node<T> head, Function<T, R> f) {
-        return null;
+    public static String sort(List<Student> students) {
+
+
+        String names = students
+                .stream()
+                .sorted(
+                        Comparator
+                                .comparing(Student::getGpa).reversed()
+                                .thenComparingInt(o -> o.getFullName().split(" ")[1].charAt(0))
+                                .thenComparing(Student::getAge))
+                .map(x -> x.getFullName() + ",")
+                .reduce("", String::concat);
+
+        return names.replaceAll("[, ]+$", "");
     }
-
-
 }
 
 
-
-/*
-Implement the method map, which accepts a linked list (head) and a mapping function, and returns a new linked list (head) where every element is the result of applying the given mapping method to each element of the original list.
-
-Make sure you do not modify the original list!
-
-For example: Given the list: 1 -> 2 -> 3, and the mapping function x => x * 2, map should return 2 -> 4 -> 6
-
-Note: the list may be null and can hold any type of value.
-
- */
+//        Collections.sort(students, (o1, o2) -> o1.getAge() - o2.getAge());
+//        Collections.sort(students, (o1, o2) -> (o1.getFullName().split(" ")[1].charAt(0) - (o2.getFullName().split(" ")[1].charAt(0))));
+//        Collections.sort(students, (o1, o2) -> o2.getGpa() - o1.getGpa());
+//
